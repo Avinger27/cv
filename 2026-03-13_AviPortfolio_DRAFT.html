@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Avinash Vishwakumar — Technology Executive, Engineering & Data Leadership. Portfolio showcasing 15+ years of building and scaling engineering organisations.">
+  <title>Avinash Vishwakumar | Engineering, Data &amp; Fire</title>
+
+  <!-- Fonts: DM Sans (body) + Playfair Display (headings) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       CSS CUSTOM PROPERTIES — Edit these to restyle the entire site
+       ============================================================ */
+    :root {
+      /* Primary palette */
+      --color-bg-primary: #0f0f1a;
+      --color-bg-secondary: #161625;
+      --color-bg-card: #1c1c30;
+      --color-bg-card-hover: #242440;
+      --color-accent: #d4a843;
+      --color-accent-dim: rgba(212, 168, 67, 0.15);
+      --color-accent-hover: #e6bc5a;
+      --color-text-primary: #e8e6e1;
+      --color-text-secondary: #9a9ab0;
+      --color-text-muted: #6b6b80;
+      --color-border: rgba(255, 255, 255, 0.06);
+      --color-border-accent: rgba(212, 168, 67, 0.3);
+
+      /* Typography */
+      --font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+      /* Sizing */
+      --max-width: 1140px;
+      --nav-height: 72px;
+      --section-padding: 100px;
+      --border-radius: 8px;
+
+      /* Transitions */
+      --transition-fast: 0.2s ease;
+      --transition-medium: 0.4s ease;
+    }
+
+    /* ============================================================
+       RESET & BASE
+       ============================================================ */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: var(--nav-height);
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--color-bg-primary);
+      color: var(--color-text-primary);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a {
+      color: var(--color-accent);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+    a:hover { color: var(--color-accent-hover); }
+
+    img { max-width: 100%; display: block; }
+
+    /* ============================================================
+       NAVIGATION
+       ============================================================ */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav-height);
+      background: rgba(15, 15, 26, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--color-border);
+      z-index: 1000;
+      transition: background var(--transition-medium);
+    }
+
+    .nav__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav__logo {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--color-text-primary);
+      letter-spacing: -0.02em;
+    }
+    .nav__logo span { color: var(--color-accent); }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav__links a {
+      color: var(--color-text-secondary);
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      position: relative;
+      padding: 4px 0;
+    }
+    .nav__links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--color-accent);
+      transition: width var(--transition-fast);
+    }
+    .nav__links a:hover,
+    .nav__links a.active {
+      color: var(--color-text-primary);
+    }
+    .nav__links a:hover::after,
+    .nav__links a.active::after {
+      width: 100%;
+    }
+
+    /* Mobile hamburger */
+    .nav__hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+      background: none;
+      border: none;
+    }
+    .nav__hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--color-text-primary);
+      transition: all var(--transition-fast);
+      border-radius: 2px;
+    }
+    .nav__hamburger.open span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .nav__hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+    .nav__hamburger.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* ============================================================
+       SECTIONS — shared layout
+       ============================================================ */
+    .section {
+      padding: var(--section-padding) 24px;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .section--full {
+      max-width: none;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .section__label {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 12px;
+    }
+
+    .section__title {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 600;
+      color: var(--color-text-primary);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .section__subtitle {
+      font-size: 1.05rem;
+      color: var(--color-text-secondary);
+      max-width: 600px;
+      line-height: 1.7;
+    }
+
+    .section__header {
+      margin-bottom: 60px;
+    }
+
+    /* ============================================================
+       HERO SECTION
+       ============================================================ */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: var(--nav-height);
+    }
+
+    .hero__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 60px 24px;
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .hero__content { max-width: 640px; }
+
+    .hero__greeting {
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 16px;
+    }
+
+    .hero__name {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 5.5vw, 3.75rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 8px;
+      color: var(--color-text-primary);
+    }
+
+    .hero__title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-weight: 400;
+      color: var(--color-text-secondary);
+      margin-bottom: 28px;
+      font-style: italic;
+    }
+
+    .hero__summary {
+      font-size: 1.05rem;
+      color: var(--color-text-secondary);
+      line-height: 1.8;
+      margin-bottom: 40px;
+      max-width: 540px;
+    }
+
+    .hero__actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      text-transform: uppercase;
+      border: none;
+    }
+
+    .btn--primary {
+      background: var(--color-accent);
+      color: var(--color-bg-primary);
+    }
+    .btn--primary:hover {
+      background: var(--color-accent-hover);
+      color: var(--color-bg-primary);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(212, 168, 67, 0.25);
+    }
+
+    .btn--outline {
+      background: transparent;
+      color: var(--color-text-primary);
+      border: 1.5px solid var(--color-border);
+    }
+    .btn--outline:hover {
+      border-color: var(--color-accent);
+      color: var(--color-accent);
+      transform: translateY(-2px);
+    }
+
+    /* Hero photo */
+    .hero__photo {
+      position: relative;
+    }
+    .hero__photo-frame {
+      width: 320px;
+      height: 400px;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--color-border);
+    }
+    .hero__photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    /* Placeholder when no photo */
+    .hero__photo-placeholder {
+      width: 100%;
+      height: 100%;
+      background: var(--color-bg-card);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--color-text-muted);
+      font-size: 0.8rem;
+    }
+    .hero__photo-placeholder svg {
+      width: 48px;
+      height: 48px;
+      stroke: var(--color-text-muted);
+    }
+    .hero__photo-accent {
+      position: absolute;
+      top: -16px;
+      right: -16px;
+      width: 100%;
+      height: 100%;
+      border: 2px solid var(--color-accent);
+      border-radius: 12px;
+      opacity: 0.3;
+      z-index: -1;
+    }
+
+    /* Impact stats row */
+    .hero__stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid var(--color-border);
+    }
+    .hero__stat-number {
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--color-accent);
+    }
+    .hero__stat-label {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 2px;
+    }
+
+    /* ============================================================
+       ABOUT SECTION
+       ============================================================ */
+    .about__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .about__text p {
+      color: var(--color-text-secondary);
+      margin-bottom: 20px;
+      font-size: 1rem;
+    }
+
+    .about__capabilities {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .capability-card {
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius);
+      padding: 24px;
+      transition: all var(--transition-fast);
+    }
+    .capability-card:hover {
+      border-color: var(--color-border-accent);
+      background: var(--color-bg-card-hover);
+      transform: translateY(-2px);
+    }
+    .capability-card__icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: var(--color-accent-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      color: var(--color-accent);
+      font-size: 1.1rem;
+    }
+    .capability-card__title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+      color: var(--color-text-primary);
+    }
+    .capability-card__desc {
+      font-size: 0.825rem;
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+
+    /* ============================================================
+       EXPERIENCE SECTION
+       ============================================================ */
+    .timeline {
+      position: relative;
+      padding-left: 40px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--color-border);
+    }
+
+    .timeline__item {
+      position: relative;
+      margin-bottom: 48px;
+    }
+    .timeline__item:last-child { margin-bottom: 0; }
+
+    .timeline__dot {
+      position: absolute;
+      left: -40px;
+      top: 6px;
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      background: var(--color-bg-primary);
+      border: 2px solid var(--color-accent);
+    }
+    .timeline__item:first-child .timeline__dot {
+      background: var(--color-accent);
+      box-shadow: 0 0 0 4px var(--color-accent-dim);
+    }
+
+    .timeline__date {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--color-accent);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .timeline__role {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--color-text-primary);
+      margin-bottom: 4px;
+    }
+
+    .timeline__org {
+      font-size: 0.95rem;
+      color: var(--color-text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .timeline__highlights {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .timeline__highlights li {
+      position: relative;
+      padding-left: 20px;
+      font-size: 0.9rem;
+      color: var(--color-text-secondary);
+      line-height: 1.65;
+    }
+    .timeline__highlights li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-accent);
+      opacity: 0.6;
+    }
+
+    /* ============================================================
+       CREDENTIALS / CERTIFICATIONS
+       ============================================================ */
+    .creds__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .cred-card {
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius);
+      padding: 28px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      transition: all var(--transition-fast);
+    }
+    .cred-card:hover {
+      border-color: var(--color-border-accent);
+      background: var(--color-bg-card-hover);
+      transform: translateY(-2px);
+    }
+
+    .cred-card__badge {
+      width: 52px;
+      height: 52px;
+      border-radius: 10px;
+      background: var(--color-accent-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.25rem;
+    }
+
+    .cred-card__info { flex: 1; }
+    .cred-card__name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--color-text-primary);
+      margin-bottom: 4px;
+    }
+    .cred-card__issuer {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+    }
+    .cred-card__link {
+      font-size: 0.75rem;
+      margin-top: 8px;
+      display: inline-block;
+    }
+
+    /* ============================================================
+       PROJECTS SECTION
+       ============================================================ */
+    .projects__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 24px;
+    }
+
+    .project-card {
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all var(--transition-fast);
+    }
+    .project-card:hover {
+      border-color: var(--color-border-accent);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .project-card__image {
+      width: 100%;
+      height: 200px;
+      background: var(--color-bg-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .project-card__image-placeholder {
+      color: var(--color-text-muted);
+      font-size: 2.5rem;
+    }
+
+    .project-card__body {
+      padding: 28px;
+    }
+
+    .project-card__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .project-card__tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 4px;
+      background: var(--color-accent-dim);
+      color: var(--color-accent);
+    }
+
+    .project-card__title {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--color-text-primary);
+    }
+
+    .project-card__desc {
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .project-card__links {
+      display: flex;
+      gap: 16px;
+    }
+    .project-card__links a {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* ============================================================
+       CONTACT SECTION
+       ============================================================ */
+    .contact__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .contact__info p {
+      color: var(--color-text-secondary);
+      margin-bottom: 32px;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .contact__channels {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .contact__channel {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: var(--color-text-secondary);
+      font-size: 0.95rem;
+    }
+    .contact__channel-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: var(--color-accent-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-accent);
+      flex-shrink: 0;
+    }
+
+    /* Form */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+
+    .form-group label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius);
+      padding: 14px 16px;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--color-text-primary);
+      transition: border-color var(--transition-fast);
+      outline: none;
+      width: 100%;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--color-accent);
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--color-text-muted);
+    }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    .footer {
+      border-top: 1px solid var(--color-border);
+      padding: 40px 24px;
+      text-align: center;
+    }
+    .footer__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer__copy {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+    }
+    .footer__socials {
+      display: flex;
+      gap: 20px;
+    }
+    .footer__socials a {
+      color: var(--color-text-muted);
+      transition: color var(--transition-fast);
+    }
+    .footer__socials a:hover { color: var(--color-accent); }
+
+    /* ============================================================
+       SCROLL ANIMATIONS
+       ============================================================ */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================================
+       MOBILE RESPONSIVE
+       ============================================================ */
+    @media (max-width: 1024px) {
+      .hero__inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+      .hero__photo { order: -1; justify-self: center; }
+      .hero__photo-frame { width: 260px; height: 320px; }
+
+      .about__grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .contact__grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      :root {
+        --section-padding: 64px;
+        --nav-height: 64px;
+      }
+
+      .nav__links {
+        display: none;
+        position: fixed;
+        top: var(--nav-height);
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(15, 15, 26, 0.97);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 28px;
+      }
+      .nav__links.open { display: flex; }
+
+      .nav__links a {
+        font-size: 1.1rem;
+      }
+
+      .nav__hamburger { display: flex; }
+
+      .hero__stats {
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+
+      .about__capabilities {
+        grid-template-columns: 1fr;
+      }
+
+      .projects__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .creds__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer__inner {
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero__name { font-size: 2rem; }
+      .hero__photo-frame { width: 220px; height: 280px; }
+      .hero__actions { flex-direction: column; }
+      .btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== NAVIGATION ========== -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#hero" class="nav__logo">AV<span>.</span></a>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#credentials">Credentials</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="nav__hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero" id="hero">
+    <div class="hero__inner">
+      <div class="hero__content">
+        <p class="hero__greeting">Hello, I'm</p>
+        <h1 class="hero__name">Avinash Vishwakumar</h1>
+        <p class="hero__title">I scale teams, wrangle data, and occasionally run into burning buildings.</p>
+        <p class="hero__summary">
+          15+ years building and scaling engineering organisations that turn technology from a cost centre into a strategic growth driver. Currently shaping data strategy for supply chain operations at Aesop (L'Or&eacute;al Luxe).
+        </p>
+        <div class="hero__actions">
+          <a href="#contact" class="btn btn--primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Get in Touch
+          </a>
+          <a href="https://linkedin.com/in/avinger" target="_blank" rel="noopener" class="btn btn--outline">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+        </div>
+        <div class="hero__stats">
+          <div>
+            <div class="hero__stat-number">15+</div>
+            <div class="hero__stat-label">Years Experience</div>
+          </div>
+          <div>
+            <div class="hero__stat-number">30+</div>
+            <div class="hero__stat-label">Engineers Led</div>
+          </div>
+          <div>
+            <div class="hero__stat-number">15M+</div>
+            <div class="hero__stat-label">Customers Served</div>
+          </div>
+          <div>
+            <div class="hero__stat-number">15</div>
+            <div class="hero__stat-label">Time Zones</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__photo">
+        <div class="hero__photo-frame">
+          <!--
+            TO ADD YOUR PHOTO:
+            Replace this placeholder div with: <img src="your-photo.jpg" alt="Avinash Vishwakumar">
+          -->
+          <img src="headshot.jpg" alt="Avinash Vishwakumar">
+        </div>
+        <div class="hero__photo-accent"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ABOUT ========== -->
+  <section class="section" id="about">
+    <div class="section__header fade-in">
+      <p class="section__label">About</p>
+      <h2 class="section__title">Professional Summary</h2>
+    </div>
+    <div class="about__grid">
+      <div class="about__text fade-in">
+        <p>
+          I'm a technology executive with a track record of transforming engineering functions into strategic growth enablers. My career spans building customer data platforms serving millions of global customers, scaling distributed engineering teams across 4 time zones, and navigating complex M&amp;A technology integrations.
+        </p>
+        <p>
+          At Aesop (L'Or&eacute;al Luxe), I've progressed from founding the engineering function to my current role as Senior Manager for Data Strategy &amp; Analytics Transformation, where I'm accountable to the COO and Director of Supply Chain for production planning intelligence across open and standard manufacturing models.
+        </p>
+        <p>
+          Beyond my corporate work, I research AI platform security, contribute to open-source fire weather technology, and volunteer as a firefighter and EMT with the CFA. I believe the best technologists operate at the intersection of deep technical capability and genuine human empathy.
+        </p>
+      </div>
+      <div class="about__capabilities fade-in">
+        <div class="capability-card">
+          <div class="capability-card__icon">&#9881;</div>
+          <div class="capability-card__title">Engineering Leadership</div>
+          <div class="capability-card__desc">Scaled teams from 5 to 30+ engineers. Performance culture, talent acquisition, L&amp;D programme design.</div>
+        </div>
+        <div class="capability-card">
+          <div class="capability-card__icon">&#9729;</div>
+          <div class="capability-card__title">Cloud &amp; Architecture</div>
+          <div class="capability-card__desc">AWS, Azure, SAP Commerce Cloud, Microsoft Fabric, Databricks. Zero-downtime migrations across 15 time zones.</div>
+        </div>
+        <div class="capability-card">
+          <div class="capability-card__icon">&#128274;</div>
+          <div class="capability-card__title">Security &amp; Compliance</div>
+          <div class="capability-card__desc">PCI DSS, ISO, SOX, NIST-CSF. Zero-trust models, SIEM/SOAR integration, pen testing oversight.</div>
+        </div>
+        <div class="capability-card">
+          <div class="capability-card__icon">&#128202;</div>
+          <div class="capability-card__title">Data Strategy</div>
+          <div class="capability-card__desc">Supply chain analytics, data engineering, PII governance, Microsoft Fabric &amp; Databricks platforms.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== EXPERIENCE ========== -->
+  <section class="section" id="experience" style="background: var(--color-bg-secondary); max-width: none; margin: 0;">
+    <div style="max-width: var(--max-width); margin: 0 auto;">
+      <div class="section__header fade-in">
+        <p class="section__label">Career</p>
+        <h2 class="section__title">Experience</h2>
+        <p class="section__subtitle">A progressive leadership journey at Aesop (L'Or&eacute;al Luxe), from building the engineering foundation to owning data strategy for supply chain operations.</p>
+      </div>
+
+      <div class="experience__overview fade-in" style="display: flex; gap: 24px; margin-bottom: 48px; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 280px; background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: var(--border-radius); padding: 24px;">
+          <div style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 12px;">Industries</div>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <span style="font-size: 0.8rem; padding: 5px 12px; border-radius: 4px; background: var(--color-accent-dim); color: var(--color-text-primary);">Retail</span>
+            <span style="font-size: 0.8rem; padding: 5px 12px; border-radius: 4px; background: var(--color-accent-dim); color: var(--color-text-primary);">Consumer Goods</span>
+            <span style="font-size: 0.8rem; padding: 5px 12px; border-radius: 4px; background: var(--color-accent-dim); color: var(--color-text-primary);">Supply Chain</span>
+            <span style="font-size: 0.8rem; padding: 5px 12px; border-radius: 4px; background: var(--color-accent-dim); color: var(--color-text-primary);">Logistics</span>
+            <span style="font-size: 0.8rem; padding: 5px 12px; border-radius: 4px; background: var(--color-accent-dim); color: var(--color-text-primary);">Utilities</span>
+          </div>
+        </div>
+        <div style="flex: 1; min-width: 280px; background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: var(--border-radius); padding: 24px;">
+          <div style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 12px;">Executive Relationships</div>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <span style="font-size: 0.8rem; padding: 5px 12px; border-radius: 4px; background: var(--color-accent-dim); color: var(--color-text-primary);">COO</span>
+            <span style="font-size: 0.8rem; padding: 5px 12px; border-radius: 4px; background: var(--color-accent-dim); color: var(--color-text-primary);">CIO</span>
+            <span style="font-size: 0.8rem; padding: 5px 12px; border-radius: 4px; background: var(--color-accent-dim); color: var(--color-text-primary);">CTO</span>
+            <span style="font-size: 0.8rem; padding: 5px 12px; border-radius: 4px; background: var(--color-accent-dim); color: var(--color-text-primary);">Finance</span>
+            <span style="font-size: 0.8rem; padding: 5px 12px; border-radius: 4px; background: var(--color-accent-dim); color: var(--color-text-primary);">Legal</span>
+            <span style="font-size: 0.8rem; padding: 5px 12px; border-radius: 4px; background: var(--color-accent-dim); color: var(--color-text-primary);">HR</span>
+            <span style="font-size: 0.8rem; padding: 5px 12px; border-radius: 4px; background: var(--color-accent-dim); color: var(--color-text-primary);">Retail</span>
+            <span style="font-size: 0.8rem; padding: 5px 12px; border-radius: 4px; background: var(--color-accent-dim); color: var(--color-text-primary);">Digital</span>
+            <span style="font-size: 0.8rem; padding: 5px 12px; border-radius: 4px; background: var(--color-accent-dim); color: var(--color-text-primary);">Supply Chain</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline fade-in">
+        <!-- Current role -->
+        <div class="timeline__item">
+          <div class="timeline__dot"></div>
+          <div class="timeline__date">December 2025 &ndash; Present</div>
+          <div class="timeline__role">Senior Manager, Data Strategy &amp; Analytics Transformation</div>
+          <div class="timeline__org">Aesop (L'Or&eacute;al Luxe) &mdash; Melbourne, Australia</div>
+          <ul class="timeline__highlights">
+            <li>Accountable to the COO and Director of Supply Chain for supply chain intelligence and production planning across open and standard manufacturing models</li>
+            <li>Collaborating with IT to manage and secure the Microsoft Fabric platform and its underlying infrastructure</li>
+            <li>Leading data integration transformation into the L'Or&eacute;al Luxe group to enhance global brand reporting</li>
+            <li>Informing and improving policies connected to data privacy, data governance, and annual audit support</li>
+          </ul>
+        </div>
+
+        <!-- Previous role -->
+        <div class="timeline__item">
+          <div class="timeline__dot"></div>
+          <div class="timeline__date">April 2018 &ndash; November 2025</div>
+          <div class="timeline__role">Testing Specialist &rarr; Enterprise QA Manager &rarr; Engineering Manager</div>
+          <div class="timeline__org">Aesop (L'Or&eacute;al Luxe) &mdash; Melbourne, Australia</div>
+          <ul class="timeline__highlights">
+            <li>Managed a dedicated data engineering team to archive and anonymise PII data across all Aesop-owned systems, reporting to the Data Protection Office for market compliance</li>
+            <li>Scaled global engineering function from 5 to 30+ engineers across 4 time zones, increasing deployment frequency and reducing lead time by 45%</li>
+            <li>Architected e-commerce platform and retail POS enhancements contributing to revenue growth across 15 time zones</li>
+            <li>Built and secured a customer data platform serving 15M+ global customers, processing transactions with $400+ AOV at 99.9% uptime</li>
+            <li>Delivered $50K annual infrastructure cost reduction through AWS optimisation, improving resource utilisation by 60%</li>
+            <li>Led multi-warehouse fulfilment implementation across 4 regions, reducing average delivery time by 35% and increasing customer satisfaction scores by 45%</li>
+            <li>Executed zero-downtime migration from AWS to SAP Commerce Cloud across 15 time zones at 100% SLA</li>
+            <li>Currently leading L'Or&eacute;al technology stack integration program, executing migration of 12 business-critical systems for continental EU operations</li>
+            <li>Led secure customer data migration for L'Or&eacute;al acquisition, implementing secure PII transfer protocols with full audit trail maintenance</li>
+            <li>Implemented zero-trust security model with a team of security engineers, remediating IAM role-based access controls and integrating AWS infrastructure to SIEM/SOAR tools</li>
+            <li>Managed security posture for AWS infrastructure based on SIEM alerting in Prisma Cloud</li>
+            <li>Supported annual compliance audits (PCI DSS, ISO, SOX) with third-party vendors, managing penetration testing and vulnerability assessments</li>
+            <li>Established a dedicated QA engineering function with automation frameworks and test-driven development practices, reducing testing cycles by 65%, achieving 85% defect resolution rate, and decreasing production incidents by 80%</li>
+            <li>Built automated service desk operations in JIRA ITSM, eliminating 80 hours/week of manual processing, achieving 30% productivity improvement and reducing response time by 85%</li>
+            <li>Drove AI adoption across the engineering function, implementing Postbot (90% reduction in API regression validation time) and Co-Pilot for L&amp;D support</li>
+            <li>Managed $2.5M technology partner portfolio, negotiating 20% cost savings with 30% service improvement</li>
+          </ul>
+        </div>
+
+        <!-- Placeholder for earlier career -->
+        <div class="timeline__item">
+          <div class="timeline__dot"></div>
+          <div class="timeline__date">Prior Experience</div>
+          <div class="timeline__role">Full Career History</div>
+          <div class="timeline__org">
+            <a href="https://linkedin.com/in/avinger" target="_blank" rel="noopener">View on LinkedIn &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CREDENTIALS ========== -->
+  <section class="section" id="credentials">
+    <div class="section__header fade-in">
+      <p class="section__label">Credentials</p>
+      <h2 class="section__title">Certifications &amp; Development</h2>
+      <p class="section__subtitle">Continuous learning across cybersecurity, cloud platforms, AI, and business leadership.</p>
+    </div>
+
+    <div class="creds__grid fade-in">
+      <div class="cred-card">
+        <div class="cred-card__badge">&#128737;</div>
+        <div class="cred-card__info">
+          <div class="cred-card__name">Google Cybersecurity Professional</div>
+          <div class="cred-card__issuer">Google</div>
+          <a class="cred-card__link" href="https://www.credly.com/users/avinash-vishwakumar" target="_blank" rel="noopener">View on Credly &rarr;</a>
+        </div>
+      </div>
+
+      <div class="cred-card">
+        <div class="cred-card__badge">&#9729;</div>
+        <div class="cred-card__info">
+          <div class="cred-card__name">Microsoft Azure AZ-900</div>
+          <div class="cred-card__issuer">Microsoft</div>
+          <a class="cred-card__link" href="https://www.credly.com/users/avinash-vishwakumar" target="_blank" rel="noopener">View on Credly &rarr;</a>
+        </div>
+      </div>
+
+      <div class="cred-card">
+        <div class="cred-card__badge">&#129302;</div>
+        <div class="cred-card__info">
+          <div class="cred-card__name">AI Product Manager</div>
+          <div class="cred-card__issuer">RMIT University</div>
+        </div>
+      </div>
+
+      <div class="cred-card">
+        <div class="cred-card__badge">&#127891;</div>
+        <div class="cred-card__info">
+          <div class="cred-card__name">Mini MBA</div>
+          <div class="cred-card__issuer">Australian Institute of Management (AIM)</div>
+        </div>
+      </div>
+
+      <div class="cred-card">
+        <div class="cred-card__badge">&#9729;</div>
+        <div class="cred-card__info">
+          <div class="cred-card__name">AWS Solutions Architect</div>
+          <div class="cred-card__issuer">Amazon Web Services (Training Complete)</div>
+        </div>
+      </div>
+
+      <div class="cred-card">
+        <div class="cred-card__badge">&#128736;</div>
+        <div class="cred-card__info">
+          <div class="cred-card__name">MAKE Advanced Automation</div>
+          <div class="cred-card__issuer">MAKE (formerly Integromat)</div>
+        </div>
+      </div>
+
+      <div class="cred-card">
+        <div class="cred-card__badge">&#128274;</div>
+        <div class="cred-card__info">
+          <div class="cred-card__name">Security Analysis</div>
+          <div class="cred-card__issuer">Snyk</div>
+        </div>
+      </div>
+
+      <div class="cred-card">
+        <div class="cred-card__badge">&#128640;</div>
+        <div class="cred-card__info">
+          <div class="cred-card__name">Product Management</div>
+          <div class="cred-card__issuer">Epic Agile</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;" class="fade-in">
+      <a href="https://www.credly.com/users/avinash-vishwakumar" target="_blank" rel="noopener" class="btn btn--outline">
+        View All Badges on Credly &rarr;
+      </a>
+    </div>
+  </section>
+
+  <!-- ========== PROJECTS ========== -->
+  <section class="section" id="projects" style="background: var(--color-bg-secondary); max-width: none; margin: 0;">
+    <div style="max-width: var(--max-width); margin: 0 auto;">
+      <div class="section__header fade-in">
+        <p class="section__label">Portfolio</p>
+        <h2 class="section__title">Projects &amp; Research</h2>
+        <p class="section__subtitle">Where engineering meets real-world impact &mdash; from fire weather intelligence to AI platform security.</p>
+      </div>
+
+      <div class="projects__grid fade-in">
+        <!-- EmberGuard -->
+        <div class="project-card">
+          <div class="project-card__image">
+            <div class="project-card__image-placeholder">&#128293;</div>
+          </div>
+          <div class="project-card__body">
+            <div class="project-card__tags">
+              <span class="project-card__tag">Python</span>
+              <span class="project-card__tag">Weather API</span>
+              <span class="project-card__tag">Open Source</span>
+            </div>
+            <h3 class="project-card__title">EmberGuard</h3>
+            <p class="project-card__desc">
+              Fire weather risk intelligence platform built for the CFA volunteer community. Aggregates real-time weather data, fire danger indices, and provides proactive alerting for bushfire-prone regions across Victoria. <strong style="color: var(--color-accent);">Invite code available on request.</strong>
+            </p>
+            <div class="project-card__links">
+              <a href="https://icy-smoke-0bbb4c500.3.azurestaticapps.net" target="_blank" rel="noopener">View Project &rarr;</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Platform Security Blog -->
+        <div class="project-card">
+          <div class="project-card__image">
+            <div class="project-card__image-placeholder">&#128272;</div>
+          </div>
+          <div class="project-card__body">
+            <div class="project-card__tags">
+              <span class="project-card__tag">AI Security</span>
+              <span class="project-card__tag">Blog Series</span>
+              <span class="project-card__tag">Research</span>
+            </div>
+            <h3 class="project-card__title">AI Platform Security Series</h3>
+            <p class="project-card__desc">
+              Multi-part technical blog series on LinkedIn and Medium covering authentication, data protection, LLM-specific threat vectors, and enterprise AI security architecture. Written for CISOs and security leadership.
+            </p>
+            <div class="project-card__links">
+              <a href="https://medium.com/@essveeavi/understanding-ai-platform-security-part-1-4586a33c4b17" target="_blank" rel="noopener">Read on Medium &rarr;</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Placeholder project -->
+        <div class="project-card">
+          <div class="project-card__image">
+            <div class="project-card__image-placeholder">&#128221;</div>
+          </div>
+          <div class="project-card__body">
+            <div class="project-card__tags">
+              <span class="project-card__tag">Data Strategy</span>
+              <span class="project-card__tag">Supply Chain</span>
+            </div>
+            <h3 class="project-card__title">Supply Chain Intelligence</h3>
+            <p class="project-card__desc">
+              Data strategy and analytics transformation work supporting production planning across open and standard manufacturing models. Collaborating across IT, supply chain, and C-suite stakeholders.
+            </p>
+            <div class="project-card__links">
+              <a href="#contact">Discuss This Work &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT ========== -->
+  <section class="section" id="contact">
+    <div class="section__header fade-in">
+      <p class="section__label">Connect</p>
+      <h2 class="section__title">Let's Talk</h2>
+      <p class="section__subtitle">Whether it's about engineering leadership, data strategy, AI security, or simply a good conversation &mdash; I'd like to hear from you.</p>
+    </div>
+
+    <div class="contact__grid fade-in">
+      <div class="contact__info">
+        <p>
+          I'm based in Melbourne, Australia, and I'm always open to connecting with technology leaders, security professionals, and anyone passionate about building things that matter.
+        </p>
+        <div class="contact__channels">
+          <div class="contact__channel">
+            <div class="contact__channel-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            Melbourne, Victoria, Australia
+          </div>
+          <div class="contact__channel">
+            <div class="contact__channel-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </div>
+            <a href="https://linkedin.com/in/avinger" target="_blank" rel="noopener">linkedin.com/in/avinger</a>
+          </div>
+          <div class="contact__channel">
+            <div class="contact__channel-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10"/><path d="M2 12h20"/></svg>
+            </div>
+            <a href="https://www.credly.com/users/avinash-vishwakumar" target="_blank" rel="noopener">Credly Profile</a>
+          </div>
+        </div>
+      </div>
+
+      <!--
+        CONTACT FORM — Formspree Integration
+        ======================================
+        To activate this form:
+        1. Go to https://formspree.io and create a free account
+        2. Create a new form and copy your form endpoint ID
+        3. Replace "YOUR_FORMSPREE_ID" below with your actual ID
+           e.g. action="https://formspree.io/f/xabc1234"
+      -->
+      <form class="contact-form" action="https://formspree.io/f/meerknva" method="POST">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your full name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="_replyto" placeholder="your@email.com" required>
+        </div>
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" name="subject" placeholder="What's this about?">
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Your message..." required></textarea>
+        </div>
+        <!-- Honeypot spam protection -->
+        <input type="text" name="_gotcha" style="display:none">
+        <button type="submit" class="btn btn--primary" style="width: 100%; justify-content: center;">
+          Send Message
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <p class="footer__copy">&copy; 2026 Avinash Vishwakumar. All rights reserved.</p>
+      <div class="footer__socials">
+        <a href="https://linkedin.com/in/avinger" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://www.credly.com/users/avinash-vishwakumar" target="_blank" rel="noopener" aria-label="Credly">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== JAVASCRIPT ========== -->
+  <script>
+    // ---- Mobile menu toggle ----
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+
+    // Close menu when a link is clicked
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+
+    // ---- Active nav link on scroll ----
+    const sections = document.querySelectorAll('section[id]');
+    const navAnchors = navLinks.querySelectorAll('a');
+
+    function updateActiveNav() {
+      const scrollY = window.scrollY + 120;
+      sections.forEach(section => {
+        const top = section.offsetTop;
+        const height = section.offsetHeight;
+        const id = section.getAttribute('id');
+        if (scrollY >= top && scrollY < top + height) {
+          navAnchors.forEach(a => {
+            a.classList.remove('active');
+            if (a.getAttribute('href') === '#' + id) {
+              a.classList.add('active');
+            }
+          });
+        }
+      });
+    }
+    window.addEventListener('scroll', updateActiveNav);
+    updateActiveNav();
+
+    // ---- Scroll-triggered fade-in animations ----
+    const fadeElements = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    fadeElements.forEach(el => observer.observe(el));
+
+    // ---- Navbar background on scroll ----
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        nav.style.background = 'rgba(15, 15, 26, 0.95)';
+      } else {
+        nav.style.background = 'rgba(15, 15, 26, 0.85)';
+      }
+    });
+  </script>
+
+</body>
+</html>
